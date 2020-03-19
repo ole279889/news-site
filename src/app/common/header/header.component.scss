@@ -1,4 +1,5 @@
 @import '~src/assets/scss/global/variables';
+@import '~src/assets/scss/global/text-mixins';
 
 .app-header {
   display: flex;
@@ -8,10 +9,18 @@
   height: 80px;
   background-color: $black;
 
+  &__login-container {
+    @include main-text();
+    display: flex;
+    align-items: center;
+    color: $white;
+  }
+
   &__login {
     height: 40px;
     width: 40px;
     margin: 20px;
     color: $white;
+    cursor: pointer;
   }
 }

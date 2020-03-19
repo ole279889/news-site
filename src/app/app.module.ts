@@ -11,8 +11,13 @@ import { NewsEditComponent } from './news-edit/news-edit.component';
 import { MaterialModule } from './material.module';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
-import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthorizationService } from './auth/shared/authorization.service';
+import { StorageService } from './shared/services/storage.service';
+import { DialogService } from './shared/services/dialog.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -22,16 +27,29 @@ import { HttpClientModule } from '@angular/common/http';
     NewsEditComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  exports: [
+    MatDialogModule,
+  ],
+  providers: [
+    AuthorizationService,
+    StorageService,
+    DialogService,
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

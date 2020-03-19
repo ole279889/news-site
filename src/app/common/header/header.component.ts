@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../auth/shared/authorization.service';
+import { DialogService } from '../../shared/services/dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,10 @@ import { AuthorizationService } from '../../auth/shared/authorization.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authorizationService: AuthorizationService) { }
+  constructor(
+    private authorizationService: AuthorizationService,
+    private dialogService: DialogService,
+    ) { }
 
   ngOnInit(): void {
   }
@@ -17,12 +21,17 @@ export class HeaderComponent implements OnInit {
     return this.authorizationService.isAuthorized;
   }
 
+  get currentUserLogin(): string {
+    return this.authorizationService.currentUser
+      ? this.authorizationService.currentUser.login
+      : undefined;
+  }
+
   public openLoginDialog(): void {
-    console.log('openLoginDialog');
+    this.dialogService.openLoginDialog();
   }
 
   public logout(): void {
-    console.log('logout');
+    this.authorizationService.logout();
   }
-
 }

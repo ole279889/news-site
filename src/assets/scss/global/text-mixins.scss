@@ -1,29 +1,17 @@
-@mixin menu-text() { // текст кнопок меню хедера, футера
-  font-family: $font-regular;
-  font-size: 15px;
-  letter-spacing: .01em;
-  line-height: 17px;
-}
+@import 'variables';
 
-@mixin post-header() {
+@mixin main-text() {
   font-family: $font-regular;
   font-size: 16px;
   letter-spacing: .01em;
-  line-height: 24px;
-}
-
-@mixin post-header-bold() {
-  font-family: $font-bold;
-  font-size: 16px;
-  letter-spacing: .01em;
-  line-height: 24px;
+  line-height: 18px;
 }
 
 @mixin block-header-bold() {
   font-family: $font-bold;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: .01em;
-  line-height: 17px;
+  line-height: 24px;
 }
 
 @mixin smallpost-content() {
@@ -35,63 +23,7 @@
 
 @mixin button() {
   font-family: $font-regular;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: .01em;
-  line-height: 18px;
-}
-
-@mixin button-small() {
-  font-family: $font-regular;
-  font-size: 12px;
-  letter-spacing: .01em;
-  line-height: 14px;
-}
-
-@mixin small-bold() {
-  font-family: $font-bold;
-  font-size: 12px;
-  letter-spacing: .01em;
-  line-height: 14px;
-}
-
-@mixin description-text() {
-  font-family: $font-regular;
-  font-size: 13px;
-  letter-spacing: .01em;
-  line-height: 14px;
-}
-
-@mixin description-text-high() {
-  font-family: $font-regular;
-  font-size: 13px;
-  letter-spacing: .01em;
-  line-height: 18px;
-}
-
-@mixin header-text() {
-  font-family: $font-regular;
-  font-size: 20px;
-  letter-spacing: .02em;
-  line-height: 24px;
-}
-
-@mixin description-small() {
-  font-family: $font-regular;
-  font-size: 9.71px;
-  letter-spacing: .01em;
-  line-height: 12px;
-}
-
-@mixin description-medium() {
-  font-family: $font-regular;
-  font-size: 11px;
-  letter-spacing: .01em;
-  line-height: 13px;
-}
-
-@mixin navmenu-mobile() {
-  font-family: $font-regular;
-  font-size: 24px;
-  letter-spacing: .02em;
-  line-height: 32px;
+  line-height: 16px;
 }

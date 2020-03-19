@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="login">
+  <div class="login__close-container">
+    <mat-icon svgIcon="close" class="login__close" (click)="closeDialog()"></mat-icon>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="OnSubmit(loginForm.value)">
+
+    <div class="login__title">Вход</div>
+    <mat-form-field appearance="outline" class="__w-full">
+      <input matInput
+             placeholder="Логин"
+             type="text"
+             formControlName="login"
+             required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="__w-full">
+      <input matInput
+             placeholder="Пароль"
+             type="password"
+             formControlName="password"
+             required/>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="!loginForm.valid" mat-button class="__blue __w-full">
+      Войти
+    </button>
+  </form>
+</div>

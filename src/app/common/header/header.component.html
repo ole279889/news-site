@@ -1,4 +1,10 @@
 <div class="app-header">
-  <mat-icon svgIcon="account_box" class="app-header__login" *ngIf="!isAuthorized" (click)="openLoginDialog()"></mat-icon>
-  <mat-icon svgIcon="exit_to_app" class="app-header__login" *ngIf="isAuthorized" (click)="logout()"></mat-icon>
+  <div class="app-header__login-container" *ngIf="!isAuthorized">
+    Войти
+    <mat-icon svgIcon="account_box" class="app-header__login" (click)="openLoginDialog()"></mat-icon>
+  </div>
+  <div class="app-header__login-container" *ngIf="isAuthorized" >
+    {{currentUserLogin}}
+    <mat-icon svgIcon="exit_to_app" class="app-header__login" (click)="logout()"></mat-icon>
+  </div>
 </div>
