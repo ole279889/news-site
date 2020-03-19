@@ -18,6 +18,8 @@ import { DialogService } from './shared/services/dialog.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { NewsItemComponent } from './news-item/news-item.component';
+import { MainPageService } from './main-page/shared/main-page.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     NewsEditComponent,
     HeaderComponent,
     FooterComponent,
+    NewsItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     AuthorizationService,
     StorageService,
     DialogService,
+    MainPageService,
     {
       provide: MatDialogRef,
       useValue: {}

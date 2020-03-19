@@ -1,0 +1,30 @@
+@import "~src/assets/scss/global/variables";
+@import "~src/assets/scss/global/text-mixins";
+
+.item-container {
+  min-height: 120px;
+  padding: 20px;
+  width: calc(100% - 100px);
+  margin: 15px 30px;
+  border: 1px solid $black;
+  border-radius: 2px;
+  background: linear-gradient(0deg, $black, $lightgrey 33%);
+  color: $white;
+  cursor: pointer;
+  transition: all .3s;
+
+  &:hover {
+    background: linear-gradient(0deg, $grey, $dirtywhite 33%);
+    color: $black;
+    transition: all .3s;
+  }
+}
+
+.item-preview {
+  @include block-header-bold();
+  margin-bottom: 40px;
+}
+
+.item-description {
+  @include main-text();
+}

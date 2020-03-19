@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MainPageService } from './shared/main-page.service';
+import { NewsItem } from '../shared/models/news';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainPageService: MainPageService) {
+    this.mainPageService.loadNews();
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {}
+
+  get newsItems(): NewsItem[] {
+    return this.mainPageService.newsItems;
   }
 
 }

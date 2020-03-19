@@ -1,0 +1,19 @@
+@import "~src/assets/scss/global/variables";
+
+.body-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: $lightgrey;
+  min-height: calc(100vh - 160px);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    max-width: 1260px;
+    padding: 20px 0;
+    background-color: $white;
+  }
+}

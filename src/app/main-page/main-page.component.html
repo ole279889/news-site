@@ -1,1 +1,7 @@
-
+<div class="body-main">
+  <div class="body-main__container">
+    <div *ngFor="let newsItem of newsItems">
+      <app-news-item [newsItem]="newsItem"></app-news-item>
+    </div>
+  </div>
+</div>
