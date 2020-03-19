@@ -1,5 +1,5 @@
-@import "~src/assets/scss/global/text-mixins";
-@import "~src/assets/scss/global/variables";
+@import '~src/assets/scss/global/text-mixins';
+@import '~src/assets/scss/global/variables';
 
 .login {
   display: flex;
@@ -12,6 +12,7 @@
   &__close {
     color: $black;
     cursor: pointer;
+
     &:hover {
       color: $grey;
     }

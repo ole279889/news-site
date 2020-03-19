@@ -1,7 +1,15 @@
 <div class="body-main">
   <div class="body-main__container">
-    <div *ngFor="let newsItem of newsItems">
-      <app-news-item [newsItem]="newsItem"></app-news-item>
+
+    <div class="news-container">
+      <div class="news-container__header">
+        <span class="news-container__label">Последние новости</span>
+      </div>
+      <div class="news-container__content">
+        <div *ngFor="let newsItem of newsItems">
+          <app-news-item [newsItem]="newsItem"></app-news-item>
+        </div>
+      </div>
     </div>
   </div>
 </div>

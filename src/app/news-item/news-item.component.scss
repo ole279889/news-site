@@ -1,22 +1,21 @@
-@import "~src/assets/scss/global/variables";
-@import "~src/assets/scss/global/text-mixins";
+@import '~src/assets/scss/global/variables';
+@import '~src/assets/scss/global/text-mixins';
 
 .item-container {
-  min-height: 120px;
-  padding: 20px;
   width: calc(100% - 100px);
+  min-height: 120px;
   margin: 15px 30px;
-  border: 1px solid $black;
+  padding: 20px;
+  transition: all .3s;
   border-radius: 2px;
   background: linear-gradient(0deg, $black, $lightgrey 33%);
   color: $white;
   cursor: pointer;
-  transition: all .3s;
 
   &:hover {
+    transition: all .3s;
     background: linear-gradient(0deg, $grey, $dirtywhite 33%);
     color: $black;
-    transition: all .3s;
   }
 }
 

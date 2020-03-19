@@ -1,10 +1,14 @@
+@import '~src/assets/scss/global/text-mixins';
+
 .mat-button,
 .mat-icon-button,
 .mat-button[disabled] {
+  @include button();
+
   &.__blue {
+    transition: background-color .2s;
     background-color: $lightblue;
     color: $white;
-    transition: background-color .2s;
     font-size: 14px;
 
     &:hover:not([disabled]) {
@@ -17,8 +21,8 @@
   }
 
   &[disabled] {
-    background-color: rgba($black, .12) !important;
-    color: $white !important;
-    border: none !important;
+    border: 0;
+    background-color: rgba($black, .12);
+    color: $white;
   }
 }
