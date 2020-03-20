@@ -22,5 +22,6 @@ export class FilterService {
   private applySearch(keyword: string): void {
     this.filteredNewsItems = this.mainPageService.newsItems
       .filter((newsItem: NewsItem) => newsItem.shortDescription.indexOf(keyword) !== -1);
+    console.log(this.filteredNewsItems);
   }
 }

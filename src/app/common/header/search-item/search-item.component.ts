@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NewsItem } from '../../../shared/models/news';
 
 @Component({
@@ -8,11 +8,21 @@ import { NewsItem } from '../../../shared/models/news';
 })
 export class SearchItemComponent implements OnInit {
 
+  @ViewChild('descriptionContainer') descriptionContainer: ElementRef;
+
   @Input() searchItem: NewsItem;
+  @Input() set searchString(value: string) {
+   const description = this.searchItem.shortDescription.replace(value, `<span style="color: red;">${value}</span>`);
+   this.setDescription(description);
+  }
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setDescription(data) {
+    setTimeout(() => this.descriptionContainer.nativeElement.innerHTML = data, 0);
   }
 
 }
