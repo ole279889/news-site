@@ -18,8 +18,13 @@ import { DialogService } from './shared/services/dialog.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { NewsItemComponent } from './news-item/news-item.component';
+import { NewsItemComponent } from './main-page/news-item/news-item.component';
 import { MainPageService } from './main-page/shared/main-page.service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { FormsModule } from '@angular/forms';
+import { FilterService } from './shared/services/filter.service';
+import { SearchItemComponent } from './common/header/search-item/search-item.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +35,7 @@ import { MainPageService } from './main-page/shared/main-page.service';
     HeaderComponent,
     FooterComponent,
     NewsItemComponent,
+    SearchItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +43,10 @@ import { MainPageService } from './main-page/shared/main-page.service';
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    NgxSkeletonLoaderModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   exports: [
@@ -49,6 +57,7 @@ import { MainPageService } from './main-page/shared/main-page.service';
     StorageService,
     DialogService,
     MainPageService,
+    FilterService,
     {
       provide: MatDialogRef,
       useValue: {}

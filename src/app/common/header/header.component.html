@@ -1,4 +1,21 @@
 <div class="app-header">
+  <div class="search">
+    <mat-form-field appearance="standard" class="search__field">
+      <mat-icon svgIcon="search" class="search__field-icon"></mat-icon>
+      <input class="search__field-input"
+             matInput
+             placeholder="Поиск"
+             autocomplete="off"
+             [(ngModel)]="filter"
+             (keyup)="onSearch(filter)">
+    </mat-form-field>
+    <div class="dropdown-container" [class.hidden]="!searchResults.length">
+      <div class="dropdown__results" *ngFor="let searchResult of searchResults">
+        <app-search-item [searchItem]="searchResult"></app-search-item>
+      </div>
+    </div>
+  </div>
+
   <div class="app-header__login-container" *ngIf="!isAuthorized">
     Войти
     <mat-icon svgIcon="account_box" class="app-header__login" (click)="openLoginDialog()"></mat-icon>

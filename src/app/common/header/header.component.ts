@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../auth/shared/authorization.service';
 import { DialogService } from '../../shared/services/dialog.service';
+import { FilterService } from '../../shared/services/filter.service';
+import { NewsItem } from '../../shared/models/news';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +11,13 @@ import { DialogService } from '../../shared/services/dialog.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public filter = '';
+
   constructor(
     private authorizationService: AuthorizationService,
     private dialogService: DialogService,
-    ) { }
+    private filterService: FilterService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -27,11 +32,19 @@ export class HeaderComponent implements OnInit {
       : undefined;
   }
 
+  get searchResults(): NewsItem[] {
+    return this.filterService.filteredNewsItems;
+  }
+
   public openLoginDialog(): void {
     this.dialogService.openLoginDialog();
   }
 
   public logout(): void {
     this.authorizationService.logout();
+  }
+
+  public onSearch(value: string): void {
+    this.filterService.searchByKeywords(value);
   }
 }

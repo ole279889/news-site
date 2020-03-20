@@ -13,7 +13,9 @@ export class MainPageService {
 
   public loadNews(): void {
     this.http.get('http://localhost:3000/news').subscribe((newsItems: NewsItem[]) => {
-      this.newsItems = newsItems;
+      setTimeout(() => {
+        this.newsItems = newsItems;
+      }, 2000);
     });
   }
 }
