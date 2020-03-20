@@ -24,6 +24,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FormsModule } from '@angular/forms';
 import { FilterService } from './shared/services/filter.service';
 import { SearchItemComponent } from './common/header/search-item/search-item.component';
+import { EditoralContactsComponent } from './main-page/editoral-contacts/editoral-contacts.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { SearchItemComponent } from './common/header/search-item/search-item.com
     FooterComponent,
     NewsItemComponent,
     SearchItemComponent,
+    EditoralContactsComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,9 @@ import { SearchItemComponent } from './common/header/search-item/search-item.com
     ReactiveFormsModule,
     MatDialogModule,
     NgxSkeletonLoaderModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAnVNHcjKDSp3iyXaOAse99A3KNUP6UsHU'
+    }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   exports: [

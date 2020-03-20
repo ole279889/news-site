@@ -1,0 +1,23 @@
+<div class="editoral-contacts">
+  <agm-map
+    class="editoral-contacts__map"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false">
+
+    <agm-marker
+      [latitude]="lat"
+      [longitude]="lng"
+      [markerDraggable]="false">
+
+      <agm-info-window>
+        <strong>Наше местоположение</strong>
+      </agm-info-window>
+
+    </agm-marker>
+
+  </agm-map>
+  <div class="editoral-contacts__address">Наш адрес: ул. Гончарова, 21, Ульяновск, Ульяновская обл., 432000</div>
+</div>

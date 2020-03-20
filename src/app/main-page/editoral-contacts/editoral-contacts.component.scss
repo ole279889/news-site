@@ -1,0 +1,18 @@
+@import '~src/assets/scss/global/variables';
+@import '~src/assets/scss/global/text-mixins';
+
+.editoral-contacts {
+  width: 100%;
+  margin: 5px 20px;
+
+  &__map {
+    width: calc(100% - 40px);
+    height: 350px;
+  }
+
+  &__address {
+    @include main-text();
+    margin-top: 20px;
+    color: $black;
+  }
+}

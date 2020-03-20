@@ -12,7 +12,7 @@ export class FilterService {
   constructor(private mainPageService: MainPageService) { }
 
   public searchByKeywords(keyword: string): void {
-    keyword.length < 3 ? this.clearSearch() : this.applySearch(keyword);
+    keyword.length < 2 ? this.clearSearch() : this.applySearch(keyword);
   }
 
   private clearSearch(): void {
