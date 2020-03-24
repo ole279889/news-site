@@ -53,32 +53,40 @@
   }
 }
 
-.dropdown-container {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  width: 70vw;
-  min-height: 100px;
-  margin-top: 40px;
-  margin-left: 10px;
-  transition: height .5s ease;
-  border: 1px solid $lightgrey;
-  border-radius: 4px;
-  background-color: $dirtywhite;
-  overflow: hidden;
-  z-index: 5;
-
-  &.hidden {
-    min-height: 0;
+.dropdown {
+  &__container {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 70vw;
+    min-height: 100px;
     margin-top: 40px;
     margin-left: 10px;
     transition: height .5s ease;
-    border: 0;
+    border: 1px solid $lightgrey;
+    border-radius: 4px;
+    background-color: $dirtywhite;
+    overflow: hidden;
+    z-index: 5;
+
+    &.hidden {
+      min-height: 0;
+      margin-top: 40px;
+      margin-left: 10px;
+      transition: height .5s ease;
+      border: 0;
+    }
   }
 
   &__results {
-    position: relative;
-    min-height: 100px;
-    margin: 0;
+    @include smallpost-content();
+    margin: 20px;
+    color: $darkgrey;
+    cursor: pointer;
+
+    &:hover {
+      color: $darkblue;
+    }
   }
+
 }

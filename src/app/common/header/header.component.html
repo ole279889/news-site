@@ -9,7 +9,7 @@
              [(ngModel)]="filter"
              (keyup)="onSearch(filter)">
     </mat-form-field>
-    <div class="dropdown-container" [class.hidden]="!searchResults.length">
+    <div class="dropdown__container" [class.hidden]="!searchResults.length">
       <div class="dropdown__results" *ngFor="let searchResult of searchResults">
         <app-search-item [searchItem]="searchResult" [searchString]="filter"></app-search-item>
       </div>

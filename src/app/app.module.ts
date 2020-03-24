@@ -26,7 +26,7 @@ import { FilterService } from './shared/services/filter.service';
 import { SearchItemComponent } from './common/header/search-item/search-item.component';
 import { EditoralContactsComponent } from './main-page/editoral-contacts/editoral-contacts.component';
 import { AgmCoreModule } from '@agm/core';
-
+import { CompileDirective } from './shared/directives/compile.directive';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { AgmCoreModule } from '@agm/core';
     NewsItemComponent,
     SearchItemComponent,
     EditoralContactsComponent,
+    CompileDirective,
   ],
   imports: [
     BrowserModule,
