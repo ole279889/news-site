@@ -25,3 +25,8 @@
     margin: 30px;
   }
 }
+
+.text-window {
+  @include main-text();
+  margin: 0 30px;
+}

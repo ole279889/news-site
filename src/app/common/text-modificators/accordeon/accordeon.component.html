@@ -1,0 +1,11 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="togglePanelState()"
+                       (closed)="togglePanelState()">
+    <mat-expansion-panel-header>
+      <mat-panel-description>
+        {{panelOpenState ? 'Скрыть' : 'Показать'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{text}}</p>
+  </mat-expansion-panel>
+</mat-accordion>

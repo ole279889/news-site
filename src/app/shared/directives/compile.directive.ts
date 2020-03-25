@@ -2,8 +2,13 @@ import {
   Compiler, NgModule, Component, Input, ComponentRef,
   Directive, ModuleWithComponentFactories, OnChanges, ViewContainerRef, OnDestroy
 } from '@angular/core';
-import { TextHighlightingComponent } from '../../common/text-modificators/text-highlighting/text-highlighting.component';
 import { BrowserModule } from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
+import { TextHighlightingComponent } from '../../common/text-modificators/text-highlighting/text-highlighting.component';
+import { ContentHideComponent } from '../../common/text-modificators/content-hide/content-hide.component';
+import { AccordeonComponent } from '../../common/text-modificators/accordeon/accordeon.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TooltipComponent } from '../../common/text-modificators/tooltip/tooltip.component';
 
 @Directive({
   selector: '[appCompile]'
@@ -11,7 +16,6 @@ import { BrowserModule } from '@angular/platform-browser';
 export class CompileDirective implements OnChanges, OnDestroy {
 
   @Input('appCompile') tpl: string;
-  @Input() appCompileContext: any = null;
 
   compRef: ComponentRef<any>;
 
@@ -31,10 +35,16 @@ export class CompileDirective implements OnChanges, OnDestroy {
     }
 
     @NgModule({
-      imports: [BrowserModule],
+      imports: [
+        BrowserModule,
+        MatExpansionModule,
+      ],
       declarations: [
         DynamicComponent,
-        TextHighlightingComponent
+        TextHighlightingComponent,
+        ContentHideComponent,
+        AccordeonComponent,
+        TooltipComponent,
       ]
     })
     class DynamicComponentModule { }
@@ -45,7 +55,6 @@ export class CompileDirective implements OnChanges, OnDestroy {
       .then((moduleWithFactories: ModuleWithComponentFactories<any>) => {
         const compFactory = moduleWithFactories.componentFactories.find(x => x.componentType === component);
         this.compRef = this.vcRef.createComponent(compFactory);
-        this.updateProperties();
       })
       .catch(error => {
         console.log(error);
@@ -56,15 +65,13 @@ export class CompileDirective implements OnChanges, OnDestroy {
     this.compRef.destroy();
   }
 
-  private updateProperties(): void {
-    if (!this.appCompileContext) {
-      return;
-    }
-    Object.keys(this.appCompileContext).forEach((key: any) => {
-      this.compRef.instance[key] = this.appCompileContext[key];
-    });
-  }
-
 }
+
+@NgModule({
+  declarations: [CompileDirective],
+  imports: [CommonModule],
+  exports: [CompileDirective],
+})
+export class CompileDirectiveModule { }
 
 

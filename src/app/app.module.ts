@@ -24,7 +24,8 @@ import { FilterService } from './shared/services/filter.service';
 import { SearchItemComponent } from './common/header/search-item/search-item.component';
 import { EditoralContactsComponent } from './main-page/editoral-contacts/editoral-contacts.component';
 import { AgmCoreModule } from '@agm/core';
-import { CompileDirective } from './shared/directives/compile.directive';
+import { BBCodeParser } from './shared/parsers/bbcode.parser';
+import { CompileDirectiveModule } from './shared/directives/compile.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,6 @@ import { CompileDirective } from './shared/directives/compile.directive';
     NewsItemComponent,
     SearchItemComponent,
     EditoralContactsComponent,
-    CompileDirective,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +47,7 @@ import { CompileDirective } from './shared/directives/compile.directive';
     ReactiveFormsModule,
     MatDialogModule,
     NgxSkeletonLoaderModule,
+    CompileDirectiveModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAnVNHcjKDSp3iyXaOAse99A3KNUP6UsHU'
     }),
@@ -61,6 +62,7 @@ import { CompileDirective } from './shared/directives/compile.directive';
     DialogService,
     MainPageService,
     FilterService,
+    BBCodeParser,
     {
       provide: MatDialogRef,
       useValue: {}

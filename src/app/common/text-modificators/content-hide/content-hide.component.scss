@@ -1,0 +1,10 @@
+@import '~src/assets/scss/global/variables';
+
+img {
+  filter: blur(5px);
+}
+
+.content-hide {
+  background-color: $black;
+  color: $black;
+}
