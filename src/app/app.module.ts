@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MainPageComponent } from './main-page/main-page.component';
-import { NewsDetailComponent } from './news-detail/news-detail.component';
-import { NewsEditComponent } from './news-edit/news-edit.component';
 import { MaterialModule } from './material.module';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
@@ -32,8 +30,6 @@ import { CompileDirective } from './shared/directives/compile.directive';
   declarations: [
     AppComponent,
     MainPageComponent,
-    NewsDetailComponent,
-    NewsEditComponent,
     HeaderComponent,
     FooterComponent,
     NewsItemComponent,

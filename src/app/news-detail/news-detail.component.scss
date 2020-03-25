@@ -1,0 +1,27 @@
+@import '~src/assets/scss/global/variables';
+@import '~src/assets/scss/global/text-mixins';
+
+.body-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  background-color: $lightgrey;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1260px;
+    min-height: calc(100vh - 200px);
+    padding: 20px 0;
+    background-color: $white;
+  }
+}
+
+.news {
+  &__header {
+    @include header-bold();
+    margin: 30px;
+  }
+}

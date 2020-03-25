@@ -1,1 +1,8 @@
-<p>news-detail works!</p>
+<div class="body-main">
+  <div class="body-main__container">
+    <div *ngIf="newsItem">
+      <div class="news__header">{{newsItem.preview}}</div>
+      <app-text-window [text]="newsItem.fullDescription"></app-text-window>
+    </div>
+  </div>
+</div>

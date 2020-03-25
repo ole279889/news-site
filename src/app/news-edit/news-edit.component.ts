@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainPageService } from '../main-page/shared/main-page.service';
 
 @Component({
   selector: 'app-news-edit',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainPageService: MainPageService) { }
 
   ngOnInit(): void {
   }

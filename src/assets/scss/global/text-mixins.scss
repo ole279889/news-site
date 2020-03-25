@@ -14,6 +14,13 @@
   line-height: 24px;
 }
 
+@mixin header-bold() {
+  font-family: $font-bold;
+  font-size: 24px;
+  letter-spacing: .02em;
+  line-height: 28px;
+}
+
 @mixin smallpost-content() {
   font-family: $font-regular;
   font-size: 14px;

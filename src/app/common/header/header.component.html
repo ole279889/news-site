@@ -11,7 +11,7 @@
     </mat-form-field>
     <div class="dropdown__container" [class.hidden]="!searchResults.length">
       <div class="dropdown__results" *ngFor="let searchResult of searchResults">
-        <app-search-item [searchItem]="searchResult" [searchString]="filter"></app-search-item>
+        <app-search-item [searchItem]="searchResult" [searchString]="filter" (click)="getDetails(searchResult.id)"></app-search-item>
       </div>
     </div>
   </div>

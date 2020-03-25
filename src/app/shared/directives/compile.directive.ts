@@ -1,6 +1,6 @@
 import {
   Compiler, NgModule, Component, Input, ComponentRef,
-  Directive, ModuleWithComponentFactories, OnChanges, ViewContainerRef, Type
+  Directive, ModuleWithComponentFactories, OnChanges, ViewContainerRef, OnDestroy
 } from '@angular/core';
 import { TextHighlightingComponent } from '../../common/text-modificators/text-highlighting/text-highlighting.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 @Directive({
   selector: '[appCompile]'
 })
-export class CompileDirective implements OnChanges {
+export class CompileDirective implements OnChanges, OnDestroy {
 
   @Input('appCompile') tpl: string;
   @Input() appCompileContext: any = null;
@@ -21,8 +21,8 @@ export class CompileDirective implements OnChanges {
 
     this.vcRef.clear();
     this.compRef = null;
-
     const template = `${this.tpl}`;
+
     @Component({
       template
     })
@@ -31,10 +31,11 @@ export class CompileDirective implements OnChanges {
     }
 
     @NgModule({
-      imports: [
-        BrowserModule
-      ],
-      declarations: [DynamicComponent, TextHighlightingComponent]
+      imports: [BrowserModule],
+      declarations: [
+        DynamicComponent,
+        TextHighlightingComponent
+      ]
     })
     class DynamicComponentModule { }
 
@@ -43,7 +44,6 @@ export class CompileDirective implements OnChanges {
     this.compiler.compileModuleAndAllComponentsAsync(module)
       .then((moduleWithFactories: ModuleWithComponentFactories<any>) => {
         const compFactory = moduleWithFactories.componentFactories.find(x => x.componentType === component);
-
         this.compRef = this.vcRef.createComponent(compFactory);
         this.updateProperties();
       })
@@ -52,7 +52,11 @@ export class CompileDirective implements OnChanges {
       });
   }
 
-  updateProperties() {
+  ngOnDestroy(): void {
+    this.compRef.destroy();
+  }
+
+  private updateProperties(): void {
     if (!this.appCompileContext) {
       return;
     }

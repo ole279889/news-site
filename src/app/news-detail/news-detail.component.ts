@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MainPageService } from '../main-page/shared/main-page.service';
+import { NewsItem } from '../shared/models/news';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-news-detail',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainPageService: MainPageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const itemID = Number(this.route.snapshot.paramMap.get('id'));
+    this.mainPageService.loadNewsItem(itemID);
+  }
+
+  get newsItem(): NewsItem {
+    return this.mainPageService.selectedNewsItem;
   }
 
 }

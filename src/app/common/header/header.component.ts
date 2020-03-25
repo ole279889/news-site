@@ -3,6 +3,7 @@ import { AuthorizationService } from '../../auth/shared/authorization.service';
 import { DialogService } from '../../shared/services/dialog.service';
 import { FilterService } from '../../shared/services/filter.service';
 import { NewsItem } from '../../shared/models/news';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
     private authorizationService: AuthorizationService,
     private dialogService: DialogService,
     private filterService: FilterService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -46,5 +48,10 @@ export class HeaderComponent implements OnInit {
 
   public onSearch(value: string): void {
     this.filterService.searchByKeywords(value);
+  }
+
+  public getDetails(id: number): void {
+    console.log('getDetails');
+    this.router.navigate(['news-detail', id]);
   }
 }

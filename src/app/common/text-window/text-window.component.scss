@@ -1,0 +1,7 @@
+@import '~src/assets/scss/global/variables';
+@import '~src/assets/scss/global/text-mixins';
+
+.text-window {
+  @include main-text();
+  margin: 0 30px;
+}
