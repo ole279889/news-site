@@ -1,0 +1,63 @@
+@import '~src/assets/scss/global/variables';
+@import '~src/assets/scss/global/text-mixins';
+
+.body-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  background-color: $lightgrey;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1260px;
+    min-height: calc(100vh - 200px);
+    padding: 20px 0;
+    background-color: $white;
+  }
+}
+
+.editor {
+  &__full-descr {
+    width: calc(100% - 60px);
+    margin: 0 30px;
+  }
+}
+
+.news-container {
+  width: calc(100% - 60px);
+  margin: 15px 30px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 24px;
+    margin-bottom: 10px;
+    background-color: $dirtywhite;
+    background-image: url('../../assets/images/pattern.png');
+    box-sizing: border-box;
+  }
+
+  &__label {
+    @include block-header-bold();
+    display: inline-block;
+    height: 100%;
+    padding: 0 10px;
+    background-color: $white;
+  }
+
+  &__content {
+    min-height: 90px;
+    padding: 15px 0;
+    border: 1px solid $lightgrey;
+  }
+}
+
+.text-window {
+  @include main-text();
+  margin: 0 30px;
+}

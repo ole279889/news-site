@@ -1,1 +1,16 @@
-<p>news-edit works!</p>
+<div class="body-main">
+  <div class="body-main__container">
+    <ckeditor class="editor__full-descr" [(ngModel)]="content" debounce="500"></ckeditor>
+
+    <div class="news-container">
+      <div class="news-container__header">
+        <span class="news-container__label">Предварительный просмотр</span>
+      </div>
+      <div class="news-container__content">
+        <div class="text-window">
+          <app-text-window  [text]="content"></app-text-window>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

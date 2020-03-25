@@ -8,6 +8,8 @@ import { MainPageService } from '../main-page/shared/main-page.service';
 })
 export class NewsEditComponent implements OnInit {
 
+  public content = 'qwe';
+
   constructor(private mainPageService: MainPageService) { }
 
   ngOnInit(): void {
