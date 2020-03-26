@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../auth/shared/authorization.service';
 import { DialogService } from '../../shared/services/dialog.service';
 import { FilterService } from '../../shared/services/filter.service';
-import { NewsItem } from '../../shared/models/news';
+import {INewsItem, NewsItem} from '../../shared/models/news';
 import { Router } from '@angular/router';
+import { MainPageService } from '../../main-page/shared/main-page.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
     private dialogService: DialogService,
     private filterService: FilterService,
     private router: Router,
+    private mainPageService: MainPageService,
   ) { }
 
   ngOnInit(): void {
@@ -52,5 +54,16 @@ export class HeaderComponent implements OnInit {
 
   public getDetails(id: number): void {
     this.router.navigate(['news-detail', id]);
+  }
+
+  public addNewsItem(): void {
+    const item: INewsItem = {
+      id: 0,
+      preview: '',
+      shortDescription: '',
+      fullDescription: '',
+    }
+    this.mainPageService.editableNewsItem = new NewsItem(item);
+    this.router.navigate(['news-add']);
   }
 }

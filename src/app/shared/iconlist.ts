@@ -5,5 +5,6 @@ export const icons = [
   'close',
   'search',
   'edit',
-  'save'
+  'save',
+  'add'
 ];

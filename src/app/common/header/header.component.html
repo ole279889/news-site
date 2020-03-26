@@ -21,7 +21,12 @@
     <mat-icon svgIcon="account_box" class="app-header__login" (click)="openLoginDialog()"></mat-icon>
   </div>
   <div class="app-header__login-container" *ngIf="isAuthorized" >
-    {{currentUserLogin}}
+    <div>
+      <span class="app-header__login">{{currentUserLogin}}</span>
+      <div class="app-header__add-btn" (click)="addNewsItem()">
+        <mat-icon svgIcon="add" class="app-header__add-icon" (click)="logout()"></mat-icon> Предложить новость
+      </div>
+    </div>
     <mat-icon svgIcon="exit_to_app" class="app-header__login" (click)="logout()"></mat-icon>
   </div>
 </div>

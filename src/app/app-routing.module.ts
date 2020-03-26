@@ -18,6 +18,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'news-add',
+    loadChildren: () => import('./news-edit/news-edit.module').then((m: any) => m.NewsEditModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     redirectTo: ''
   }
