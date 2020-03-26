@@ -28,6 +28,7 @@ import { BBCodeParser } from './shared/parsers/bbcode.parser';
 import { CompileDirectiveModule } from './shared/directives/compile.directive';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { ChangesGuard } from './shared/guards/chandes.guard';
+import { TextMapComponent } from './common/text-modificators/text-map/text-map.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ChangesGuard } from './shared/guards/chandes.guard';
     NewsItemComponent,
     SearchItemComponent,
     EditoralContactsComponent,
+    TextMapComponent,
   ],
   imports: [
     BrowserModule,

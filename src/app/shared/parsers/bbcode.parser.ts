@@ -28,8 +28,8 @@ export class BBCodeParser implements Parser {
         `<app-tooltip [text]="'${'$1'}'" [targetText]="'${'$2'}'"></app-tooltip>`
       ),
       new BBCode(
-        '\\[tooltip text=&quot;(.+?)&quot;\\](.+?)\\[\\/tooltip\\]',
-        `<app-tooltip [text]="'${'$1'}'" [targetText]="'${'$2'}'"></app-tooltip>`
+        '\\[map point=(.+?)\\](.+?)\\[\\/map\\]',
+        `<app-text-map [coords]="'${'$1'}'" [baloonText]="'${'$2'}'"></app-text-map>`
       ),
     ];
   }

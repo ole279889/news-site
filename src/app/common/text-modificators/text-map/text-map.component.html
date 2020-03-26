@@ -1,0 +1,22 @@
+<div class="text-map">
+  <agm-map
+    class="text-map__map"
+    [latitude]="pointCoords.lat"
+    [longitude]="pointCoords.lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false">
+
+    <agm-marker
+      [latitude]="pointCoords.lat"
+      [longitude]="pointCoords.lng"
+      [markerDraggable]="false">
+
+      <agm-info-window>
+        <strong>{{baloonText}}</strong>
+      </agm-info-window>
+
+    </agm-marker>
+
+  </agm-map>
+</div>
