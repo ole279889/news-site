@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'news-edit/:id',
-    loadChildren: () => import('./news-edit/news-edit.module').then((m: any) => m.NewsEditModule)
+    loadChildren: () => import('./news-edit/news-edit.module').then((m: any) => m.NewsEditModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

@@ -15,9 +15,22 @@ export class BBCodeParser implements Parser {
 
   private static defaults(): BBCode[] {
     return [
-      new BBCode('\\[spoiler\\](.+?)\\[\\/spoiler\\]', `<app-content-hide [contentToHide]="'${'$1'}'"></app-content-hide>`),
-      new BBCode('\\[hide\\](.+?)\\[\\/hide\\]', `<app-accordeon [text]="'${'$1'}'"></app-accordeon>`),
-      new BBCode('\\[tooltip text="(.+?)"\\](.+?)\\[\\/tooltip\\]', `<app-tooltip [text]="'${'$1'}'" [targetText]="'${'$2'}'"></app-tooltip>`),
+      new BBCode(
+        '\\[spoiler\\](.+?)\\[\\/spoiler\\]',
+        `<app-content-hide [contentToHide]="'${'$1'}'"></app-content-hide>`
+      ),
+      new BBCode(
+        '\\[hide\\](.+?)\\[\\/hide\\]',
+        `<app-accordeon [text]="'${'$1'}'"></app-accordeon>`
+      ),
+      new BBCode(
+        '\\[tooltip text="(.+?)"\\](.+?)\\[\\/tooltip\\]',
+        `<app-tooltip [text]="'${'$1'}'" [targetText]="'${'$2'}'"></app-tooltip>`
+      ),
+      new BBCode(
+        '\\[tooltip text=&quot;(.+?)&quot;\\](.+?)\\[\\/tooltip\\]',
+        `<app-tooltip [text]="'${'$1'}'" [targetText]="'${'$2'}'"></app-tooltip>`
+      ),
     ];
   }
 
@@ -27,9 +40,7 @@ export class BBCodeParser implements Parser {
 
   public parse(text: string): string {
     return this.codes
-      .reduce((acc, code) => acc
-        .replace(code.regexp, code.replacement), text,
-      );
+      .reduce((acc, code) => acc.replace(code.regexp, code.replacement), text);
   }
 
 }

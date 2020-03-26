@@ -1,16 +1,75 @@
 <div class="body-main">
   <div class="body-main__container">
-    <ckeditor class="editor__full-descr" [(ngModel)]="content" debounce="500"></ckeditor>
 
-    <div class="news-container">
-      <div class="news-container__header">
-        <span class="news-container__label">Предварительный просмотр</span>
+    <div class="news-container __m-bottom30">
+      <div class="news-container__header __h28">
+        <span class="news-container__label __font24">Заголовок</span>
       </div>
-      <div class="news-container__content">
-        <div class="text-window">
-          <app-text-window  [text]="content"></app-text-window>
+      <div class="news-container__content __paddinglr15">
+        <ckeditor [(ngModel)]="editableNewsItem.preview"
+                  [config]="{ autoParagraph: false, entities: false }"
+                  debounce="500" >
+        </ckeditor>
+        <div class="news-container __preview">
+          <div class="news-container__header">
+            <span class="news-container__label">Предварительный просмотр</span>
+          </div>
+          <div class="news-container__content">
+            <div class="text-window">
+              {{editableNewsItem.preview}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="news-container __m-bottom30">
+      <div class="news-container__header __h28">
+        <span class="news-container__label __font24">Краткое описание</span>
+      </div>
+      <div class="news-container__content __paddinglr15">
+        <ckeditor [(ngModel)]="editableNewsItem.shortDescription"
+                  [config]="{ autoParagraph: false, entities: false }"
+                  debounce="500">
+        </ckeditor>
+        <div class="news-container __preview">
+          <div class="news-container__header">
+            <span class="news-container__label">Предварительный просмотр</span>
+          </div>
+          <div class="news-container__content">
+            <div class="text-window">
+              {{editableNewsItem.shortDescription}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-container __m-bottom30">
+      <div class="news-container__header __h28">
+        <span class="news-container__label __font24">Подробное описание</span>
+      </div>
+      <div class="news-container__content __paddinglr15">
+        <ckeditor [(ngModel)]="editableNewsItem.fullDescription"
+                  [config]="{ autoParagraph: false, entities: false }"
+                  debounce="500">
+        </ckeditor>
+        <div class="news-container __preview">
+          <div class="news-container__header">
+            <span class="news-container__label">Предварительный просмотр</span>
+          </div>
+          <div class="news-container__content">
+            <div class="text-window">
+              <app-text-window  [text]="editableNewsItem.fullDescription"></app-text-window>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="save-container">
+      <mat-icon svgIcon="save" class="save" (click)="save()"></mat-icon>
+    </div>
+
   </div>
 </div>

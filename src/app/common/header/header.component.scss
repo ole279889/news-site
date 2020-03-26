@@ -22,6 +22,10 @@
     margin: 20px;
     color: $white;
     cursor: pointer;
+
+    &:hover {
+      color: $dirtywhite;
+    }
   }
 }
 

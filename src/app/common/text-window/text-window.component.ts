@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CompileDirectiveModule } from '../../shared/directives/compile.directive';
+import { DecodePipe } from '../../shared/pipes/decode.pipe';
 
 @Component({
   selector: 'app-text-window',
@@ -19,3 +22,10 @@ export class TextWindowComponent implements OnInit {
   }
 
 }
+
+@NgModule({
+  declarations: [TextWindowComponent, DecodePipe],
+  imports: [CommonModule, CompileDirectiveModule],
+  exports: [TextWindowComponent]
+})
+export class TextWindowModule { }

@@ -26,6 +26,8 @@ import { EditoralContactsComponent } from './main-page/editoral-contacts/editora
 import { AgmCoreModule } from '@agm/core';
 import { BBCodeParser } from './shared/parsers/bbcode.parser';
 import { CompileDirectiveModule } from './shared/directives/compile.directive';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { ChangesGuard } from './shared/guards/chandes.guard';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { CompileDirectiveModule } from './shared/directives/compile.directive';
     MainPageService,
     FilterService,
     BBCodeParser,
+    AuthGuard,
+    ChangesGuard,
     {
       provide: MatDialogRef,
       useValue: {}

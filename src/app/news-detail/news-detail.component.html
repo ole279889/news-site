@@ -5,6 +5,9 @@
       <div class="text-window">
         <app-text-window  [text]="newsItem.fullDescription"></app-text-window>
       </div>
+      <div class="news__edit-container" *ngIf="isAuthorized">
+        <mat-icon svgIcon="edit" class="news__edit" (click)="editNewsItem(newsItem)"></mat-icon>
+      </div>
     </div>
   </div>
 </div>

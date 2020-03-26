@@ -51,7 +51,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public getDetails(id: number): void {
-    console.log('getDetails');
     this.router.navigate(['news-detail', id]);
   }
 }

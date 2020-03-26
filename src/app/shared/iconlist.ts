@@ -3,5 +3,7 @@ export const icons = [
   'account_box',
   'exit_to_app',
   'close',
-  'search'
+  'search',
+  'edit',
+  'save'
 ];

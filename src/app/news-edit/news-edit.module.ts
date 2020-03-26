@@ -4,15 +4,13 @@ import { NewsEditComponent } from './news-edit.component';
 import { NewsEditRoutingModule } from './news-edit-routing.module';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { FormsModule } from '@angular/forms';
-import { TextWindowComponent } from '../common/text-window/text-window.component';
-import { DecodePipe } from '../shared/pipes/decode.pipe';
+import { TextWindowModule } from '../common/text-window/text-window.component';
 import { CompileDirectiveModule } from '../shared/directives/compile.directive';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     NewsEditComponent,
-    TextWindowComponent,
-    DecodePipe,
   ],
   imports: [
     CommonModule,
@@ -20,6 +18,8 @@ import { CompileDirectiveModule } from '../shared/directives/compile.directive';
     CKEditorModule,
     FormsModule,
     CompileDirectiveModule,
+    TextWindowModule,
+    MatIconModule,
   ]
 })
 export class NewsEditModule { }
