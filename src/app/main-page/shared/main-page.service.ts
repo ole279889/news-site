@@ -28,7 +28,7 @@ export class MainPageService {
   }
 
   public loadNews(): void {
-    this.http.get('http://localhost:3000/news').subscribe((newsItems: NewsItem[]) => {
+    this.http.get('http://localhost:5000/news').subscribe((newsItems: NewsItem[]) => {
       setTimeout(() => {
         this.newsItems = newsItems;
       }, 2000);
@@ -36,7 +36,7 @@ export class MainPageService {
   }
 
   public loadNewsItem(id: number): void {
-    this.http.get(`http://localhost:3000/news/${id}`).subscribe((newsItem: NewsItem) => {
+    this.http.get(`http://localhost:5000/news/${id}`).subscribe((newsItem: NewsItem) => {
       this.selectedNewsItem = newsItem;
     });
   }
@@ -47,7 +47,7 @@ export class MainPageService {
       shortDescription: item.shortDescription,
       fullDescription: item.fullDescription,
     }
-    this.http.patch(`http://localhost:3000/news/${item.id}`, itemPatchParams).subscribe(() => {
+    this.http.patch(`http://localhost:5000/news/${item.id}`, itemPatchParams).subscribe(() => {
       this.onNewsItemModifiedSubject.next(true);
     }, (error) => {
       console.log(error);
@@ -61,7 +61,7 @@ export class MainPageService {
       shortDescription: item.shortDescription,
       fullDescription: item.fullDescription,
     }
-    this.http.post(`http://localhost:3000/news`, itemAddParams).subscribe(() => {
+    this.http.post(`http://localhost:5000/news`, itemAddParams).subscribe(() => {
       this.onNewsItemModifiedSubject.next(true);
     }, (error) => {
       console.log(error);
