@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { icons, iconsUrl } from './shared/iconlist';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SwPush } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,13 @@ export class AppComponent implements OnInit {
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-  ) {}
+    private swPush: SwPush,
+  ) {
+    this.swPush.notificationClicks.subscribe( event => {
+      const url = event.notification.data.url;
+      window.open(url, '_blank');
+    });
+  }
 
   ngOnInit() {
     this.generateIcons();
