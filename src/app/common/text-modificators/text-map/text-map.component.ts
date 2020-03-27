@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 interface ICoords {
   lat: number;
@@ -8,7 +8,8 @@ interface ICoords {
 @Component({
   selector: 'app-text-map',
   templateUrl: './text-map.component.html',
-  styleUrls: ['./text-map.component.scss']
+  styleUrls: ['./text-map.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextMapComponent implements OnInit {
 

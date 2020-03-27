@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, AfterContentInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, AfterContentInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-content-hide',
   templateUrl: './content-hide.component.html',
-  styleUrls: ['./content-hide.component.scss']
+  styleUrls: ['./content-hide.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentHideComponent implements OnInit, AfterContentInit {
 

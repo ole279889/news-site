@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [],
@@ -15,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatDialogModule,
     MatFormFieldModule,
+    ScrollingModule,
   ],
   exports: [
     MatIconModule,
@@ -22,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatDialogModule,
     MatFormFieldModule,
+    ScrollingModule,
   ]
 })
 export class MaterialModule { }

@@ -6,21 +6,25 @@
         <span class="default-container__label">Последние новости</span>
       </div>
       <div class="default-container__content">
-        <div *ngIf="!newsItems.length">
-          <ngx-skeleton-loader count="3"
-                               [theme]="{
+
+        <cdk-virtual-scroll-viewport itemSize="160" class="scroll-viewport">
+          <div *ngIf="!newsItems.length">
+            <ngx-skeleton-loader count="3"
+                                 [theme]="{
                                           'border-radius': '0',
                                           height: '160px',
                                           width: 'calc(100% - 60px)',
                                           margin: '7px 30px'
                                         }"
-          ></ngx-skeleton-loader>
-        </div>
-        <div *ngIf="newsItems.length">
-          <div *ngFor="let newsItem of newsItems">
-            <app-news-item [newsItem]="newsItem"></app-news-item>
+            ></ngx-skeleton-loader>
           </div>
-        </div>
+          <div *ngIf="newsItems.length">
+            <div *cdkVirtualFor="let newsItem of newsItems">
+              <app-news-item [newsItem]="newsItem"></app-news-item>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+
       </div>
     </div>
 
