@@ -1,5 +1,5 @@
 export interface INewsItem {
-  id: number;
+  id?: number;
   preview: string;
   shortDescription: string;
   fullDescription: string;

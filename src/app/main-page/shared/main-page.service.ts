@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NewsItem } from '../../shared/models/news';
+import { INewsItem, NewsItem } from '../../shared/models/news';
 import { StorageService } from '../../shared/services/storage.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class MainPageService {
 
   public newsItems: NewsItem[] = [];
   public selectedNewsItem: NewsItem;
+  public onNewsItemModifiedSubject: Subject<boolean> = new Subject<boolean>();
   private _editableNewsItem: NewsItem;
 
   constructor(private http: HttpClient, private storage: StorageService) {
@@ -40,6 +41,34 @@ export class MainPageService {
     });
   }
 
+  public updateNewsItem(item: NewsItem): void {
+    const itemPatchParams: INewsItem = {
+      preview: item.preview,
+      shortDescription: item.shortDescription,
+      fullDescription: item.fullDescription,
+    }
+    this.http.patch(`http://localhost:3000/news/${item.id}`, itemPatchParams).subscribe(() => {
+      this.onNewsItemModifiedSubject.next(true);
+    }, (error) => {
+      console.log(error);
+      this.onNewsItemModifiedSubject.next(false);
+    });
+  }
+
+  public addNewsItem(item: NewsItem): void {
+    const itemAddParams: INewsItem = {
+      preview: item.preview,
+      shortDescription: item.shortDescription,
+      fullDescription: item.fullDescription,
+    }
+    this.http.post(`http://localhost:3000/news`, itemAddParams).subscribe(() => {
+      this.onNewsItemModifiedSubject.next(true);
+    }, (error) => {
+      console.log(error);
+      this.onNewsItemModifiedSubject.next(false);
+    });
+  }
+
   public canDeactivate(): boolean  | Observable<boolean> {
     if (this.isEditableItemModified()) {
       return confirm('Вы действительно хотите покинуть страницу? Несохраненные данные будут утеряны.');
@@ -48,10 +77,15 @@ export class MainPageService {
     }
   }
 
+  public isNewsItemValid(item: NewsItem): boolean {
+    return Boolean(item.preview)  && Boolean(item.shortDescription) && Boolean(item.fullDescription);
+  }
+
   private isEditableItemModified(): boolean {
-    return !(this.selectedNewsItem.preview === this.editableNewsItem.preview
-      && this.selectedNewsItem.shortDescription === this.editableNewsItem.shortDescription
-      && this.selectedNewsItem.fullDescription === this.editableNewsItem.fullDescription);
+    return (this.selectedNewsItem && this.editableNewsItem)
+      && !(this.selectedNewsItem.preview === this.editableNewsItem.preview
+        && this.selectedNewsItem.shortDescription === this.editableNewsItem.shortDescription
+        && this.selectedNewsItem.fullDescription === this.editableNewsItem.fullDescription);
   }
 
 }
