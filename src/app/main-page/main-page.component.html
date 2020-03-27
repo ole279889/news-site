@@ -1,11 +1,11 @@
 <div class="body-main">
   <div class="body-main__container">
 
-    <div class="news-container">
-      <div class="news-container__header">
-        <span class="news-container__label">Последние новости</span>
+    <div class="default-container">
+      <div class="default-container__header">
+        <span class="default-container__label">Последние новости</span>
       </div>
-      <div class="news-container__content">
+      <div class="default-container__content">
         <div *ngIf="!newsItems.length">
           <ngx-skeleton-loader count="3"
                                [theme]="{
@@ -24,11 +24,11 @@
       </div>
     </div>
 
-    <div class="news-container">
-      <div class="news-container__header">
-        <span class="news-container__label">Контакты редакции</span>
+    <div class="default-container">
+      <div class="default-container__header">
+        <span class="default-container__label">Контакты редакции</span>
       </div>
-      <div class="news-container__content">
+      <div class="default-container__content">
         <app-editoral-contacts></app-editoral-contacts>
       </div>
     </div>

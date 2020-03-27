@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../auth/shared/authorization.service';
 import { DialogService } from '../../shared/services/dialog.service';
 import { FilterService } from '../../shared/services/filter.service';
-import {INewsItem, NewsItem} from '../../shared/models/news';
+import { INewsItem, NewsItem } from '../../shared/models/news';
 import { Router } from '@angular/router';
 import { MainPageService } from '../../main-page/shared/main-page.service';
 
@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
       preview: '',
       shortDescription: '',
       fullDescription: '',
-    }
+    };
     this.mainPageService.editableNewsItem = new NewsItem(item);
     this.router.navigate(['news-add']);
   }
