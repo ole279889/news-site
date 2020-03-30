@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors')
 const webPush = require('web-push');
 const bodyParser = require('body-parser');
-var fs = require("fs");
+var fs = require('fs');
 const app = express();
 
 app.use(cors());
@@ -14,9 +14,11 @@ const privateVapidKey = 'zuIk_uvlAfMWo7DD6AY4gnHSBN6p03rHGOLwtEMIWyk';
 webPush.setVapidDetails('mailto:test@example.com', publicVapidKey, privateVapidKey);
 
 var _news = [];
-fs.readFile( __dirname + "/db.json", 'utf8', function (err, data) {
+fs.readFile( __dirname + '/db.json', 'utf8', function (err, data) {
   _news = data;
 });
+
+var USER_SUBSCRIPTIONS = [];
 
 function newsIDMax() {
   var news = JSON.parse(_news);
@@ -25,23 +27,38 @@ function newsIDMax() {
   });
 }
 
-app.post('/notifications', (req, res) => {
-  const subscription = req.body.notification;
-  console.log(`Subscription received`);
-  res.status(201).json({});
-  const payload = JSON.stringify({
+function sendNotifications(header, id) {
+
+  const notificationPayload = {
     notification: {
-      title: 'Notification',
-      body: 'Know how to send notifications through Angular with this article!',
-      icon: 'https://www.shareicon.net/data/256x256/2015/10/02/110808_blog_512x512.png',
+      title: 'News!',
+      body: `New news article added: ${header} - click to show`,
+      icon: 'assets/images/icons/notification.png',
       vibrate: [100, 50, 100],
       data: {
-        url: 'https://medium.com/@arjenbrandenburgh/angulars-pwa-swpush-and-swupdate-15a7e5c154ac'
+        url: `http://localhost:8080/news-detail/${id}`
       }
     }
-  });
-  webPush.sendNotification(subscription, payload)
-    .catch(error => console.error(error));
+  };
+
+  Promise.all(USER_SUBSCRIPTIONS.map(sub => webPush.sendNotification(sub, JSON.stringify(notificationPayload))))
+    .then(() => console.log('Notifications sent successfully.'))
+    .catch(err => {
+      console.error('Error sending notification, reason: ', err);
+      res.sendStatus(500);
+    });
+}
+
+app.post('/notifications', function (req, res) {
+  const sub = req.body.notification;
+  console.log('Received Subscription on the server: ', sub);
+  if (USER_SUBSCRIPTIONS
+    .findIndex(_sub => _sub.endpoint === sub.endpoint
+    && _sub.keys.p256dh === sub.keys.p256dh
+    && _sub.keys.auth === sub.keys.auth) === -1) {
+    USER_SUBSCRIPTIONS.push(sub);
+  }
+  res.status(200).json({message: 'Subscription added successfully.'});
 });
 
 app.get('/news', function (req, res) {
@@ -69,14 +86,16 @@ app.patch('/news/:id', function (req, res) {
 
 app.post('/news', function (req, res) {
   var news = JSON.parse( _news );
+  const _id = newsIDMax() + 1;
   var newsItem = {
-    "id": newsIDMax() + 1,
-    "preview"  : req.body.preview,
-    "shortDescription"  : req.body.shortDescription,
-    "fullDescription" : req.body.fullDescription,
+    'id': _id,
+    'preview'  : req.body.preview,
+    'shortDescription'  : req.body.shortDescription,
+    'fullDescription' : req.body.fullDescription,
   };
   news.push(newsItem);
   _news = JSON.stringify(news);
+  sendNotifications(req.body.preview, _id);
   res.end(JSON.stringify(newsItem));
 });
 

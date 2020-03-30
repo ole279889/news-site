@@ -3,6 +3,7 @@ import { icons, iconsUrl } from './shared/iconlist';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SwPush } from '@angular/service-worker';
+import { NotificationService } from './shared/services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private swPush: SwPush,
+    private notificationService: NotificationService,
   ) {
     this.swPush.notificationClicks.subscribe( event => {
       const url = event.notification.data.url;
@@ -25,6 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.generateIcons();
+    this.notificationService.subscribeToNotifications();
   }
 
   private generateIcons(): void {
