@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { TextWindowModule } from '../common/text-window/text-window.component';
 import { CompileDirectiveModule } from '../shared/directives/compile.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
     CompileDirectiveModule,
     TextWindowModule,
     MatIconModule,
+    MatInputModule,
   ]
 })
 export class NewsEditModule { }

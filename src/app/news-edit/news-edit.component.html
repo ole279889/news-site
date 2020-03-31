@@ -5,21 +5,8 @@
         <span class="default-container__label __font24">Заголовок</span>
       </div>
       <div class="default-container__content __paddinglr15">
-        <ckeditor [(ngModel)]="preview"
-                  [config]="{ autoParagraph: false, entities: false }"
-                  (change)="onValidate()"
-                  debounce="500">
-        </ckeditor>
-        <div class="default-container __preview">
-          <div class="default-container__header">
-            <span class="default-container__label">Предварительный просмотр</span>
-          </div>
-          <div class="default-container__content">
-            <div class="text-window">
-              {{preview}}
-            </div>
-          </div>
-        </div>
+        <textarea matInput class="default-container__input" [(ngModel)]="preview" (change)="onValidate()">
+        </textarea>
       </div>
     </div>
 
@@ -28,21 +15,8 @@
         <span class="default-container__label __font24">Краткое описание</span>
       </div>
       <div class="default-container__content __paddinglr15">
-        <ckeditor [(ngModel)]="shortDescription"
-                  [config]="{ autoParagraph: false, entities: false }"
-                  (change)="onValidate()"
-                  debounce="500">
-        </ckeditor>
-        <div class="default-container __preview">
-          <div class="default-container__header">
-            <span class="default-container__label">Предварительный просмотр</span>
-          </div>
-          <div class="default-container__content">
-            <div class="text-window">
-              {{shortDescription}}
-            </div>
-          </div>
-        </div>
+        <textarea matInput class="default-container__input" [(ngModel)]="shortDescription" (change)="onValidate()">
+        </textarea>
       </div>
     </div>
 
