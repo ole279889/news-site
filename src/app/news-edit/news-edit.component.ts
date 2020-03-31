@@ -12,10 +12,15 @@ import { ComponentCanDeactivate } from '../shared/guards/chandes.guard';
 })
 export class NewsEditComponent implements ComponentCanDeactivate, OnInit, OnDestroy {
 
+  public showError = false;
+
   private isUpdate: boolean;
   private onUpdateItem: any;
 
-  constructor(private mainPageService: MainPageService, private router: Router) { }
+  constructor(
+    private mainPageService: MainPageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.isUpdate = Boolean(this.mainPageService.editableNewsItem.id);
@@ -36,25 +41,51 @@ export class NewsEditComponent implements ComponentCanDeactivate, OnInit, OnDest
     return this.mainPageService.selectedNewsItem;
   }
 
-  get editableNewsItem(): NewsItem {
-    return this.mainPageService.editableNewsItem;
+  get preview(): string {
+    return this.mainPageService.editableNewsItem.preview;
   }
 
-  set editableNewsItem(value: NewsItem) {
-    this.mainPageService.editableNewsItem = value;
+  set preview(value: string) {
+    this.mainPageService.editableNewsItem.preview = value;
+    this.mainPageService.saveEdit();
+  }
+
+  get shortDescription(): string {
+    return this.mainPageService.editableNewsItem.shortDescription;
+  }
+
+  set shortDescription(value: string) {
+    this.mainPageService.editableNewsItem.shortDescription = value;
+    this.mainPageService.saveEdit();
+  }
+
+  get fullDescription(): string {
+    return this.mainPageService.editableNewsItem.fullDescription;
+  }
+
+  set fullDescription(value: string) {
+    this.mainPageService.editableNewsItem.fullDescription = value;
+    this.mainPageService.saveEdit();
   }
 
   public canDeactivate(): boolean  | Observable<boolean> {
     return this.mainPageService.canDeactivate();
   }
 
+  public onValidate(): void {
+    if (this.mainPageService.isNewsItemValid() && this.showError) {
+      this.showError = false;
+    }
+  }
+
   public save(): void {
-    if (!this.mainPageService.isNewsItemValid(this.editableNewsItem)) {
+    if (!this.mainPageService.isNewsItemValid()) {
+      this.showError = true;
       return;
     }
     this.isUpdate
-      ? this.mainPageService.updateNewsItem(this.editableNewsItem)
-      : this.mainPageService.addNewsItem(this.editableNewsItem);
+      ? this.mainPageService.updateNewsItem()
+      : this.mainPageService.addNewsItem();
   }
 
 }

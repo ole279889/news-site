@@ -25,7 +25,11 @@ export class MainPageService {
 
   set editableNewsItem(value: NewsItem) {
     this._editableNewsItem = value;
-    this.storage.set('editableNewsItem', value);
+    this.saveEdit();
+  }
+
+  public saveEdit(): void {
+    this.storage.set('editableNewsItem', this._editableNewsItem);
   }
 
   public loadNews(): void {
@@ -42,13 +46,13 @@ export class MainPageService {
     });
   }
 
-  public updateNewsItem(item: NewsItem): void {
+  public updateNewsItem(): void {
     const itemPatchParams: INewsItem = {
-      preview: item.preview,
-      shortDescription: item.shortDescription,
-      fullDescription: item.fullDescription,
+      preview: this.editableNewsItem.preview,
+      shortDescription: this.editableNewsItem.shortDescription,
+      fullDescription: this.editableNewsItem.fullDescription,
     }
-    this.http.patch(`http://localhost:5000/news/${item.id}`, itemPatchParams).subscribe(() => {
+    this.http.patch(`http://localhost:5000/news/${this.editableNewsItem.id}`, itemPatchParams).subscribe(() => {
       this.editableNewsItem = null;
       this.onNewsItemModifiedSubject.next(true);
     }, (error) => {
@@ -57,11 +61,11 @@ export class MainPageService {
     });
   }
 
-  public addNewsItem(item: NewsItem): void {
+  public addNewsItem(): void {
     const itemAddParams: INewsItem = {
-      preview: item.preview,
-      shortDescription: item.shortDescription,
-      fullDescription: item.fullDescription,
+      preview: this.editableNewsItem.preview,
+      shortDescription: this.editableNewsItem.shortDescription,
+      fullDescription: this.editableNewsItem.fullDescription,
     }
     this.http.post(`http://localhost:5000/news`, itemAddParams).subscribe(() => {
       this.editableNewsItem = null;
@@ -80,16 +84,18 @@ export class MainPageService {
     }
   }
 
-  public isNewsItemValid(item: NewsItem): boolean {
-    return Boolean(item.preview)  && Boolean(item.shortDescription) && Boolean(item.fullDescription);
+  public isNewsItemValid(): boolean {
+    return Boolean(this.editableNewsItem.preview)
+      && Boolean(this.editableNewsItem.shortDescription)
+      && Boolean(this.editableNewsItem.fullDescription);
   }
 
   private isEditableItemModified(): boolean {
     const hasSelected = Boolean(this.selectedNewsItem);
     const hasEditable = Boolean(this.editableNewsItem)
-      && Boolean(this.editableNewsItem.preview)
-      && Boolean(this.editableNewsItem.shortDescription)
-      && Boolean(this.editableNewsItem.fullDescription);
+      && (Boolean(this.editableNewsItem.preview)
+        || Boolean(this.editableNewsItem.shortDescription)
+        || Boolean(this.editableNewsItem.fullDescription));
     return !hasSelected && hasEditable
       || (hasSelected && hasEditable && !this.isItemsEqual(this.selectedNewsItem, this.editableNewsItem));
   }

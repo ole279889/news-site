@@ -1,14 +1,14 @@
 <div class="body-main">
   <div class="body-main__container">
-
     <div class="default-container __m-bottom30">
       <div class="default-container__header __h28">
         <span class="default-container__label __font24">Заголовок</span>
       </div>
       <div class="default-container__content __paddinglr15">
-        <ckeditor [(ngModel)]="editableNewsItem.preview"
+        <ckeditor [(ngModel)]="preview"
                   [config]="{ autoParagraph: false, entities: false }"
-                  debounce="500" >
+                  (change)="onValidate()"
+                  debounce="500">
         </ckeditor>
         <div class="default-container __preview">
           <div class="default-container__header">
@@ -16,7 +16,7 @@
           </div>
           <div class="default-container__content">
             <div class="text-window">
-              {{editableNewsItem.preview}}
+              {{preview}}
             </div>
           </div>
         </div>
@@ -28,8 +28,9 @@
         <span class="default-container__label __font24">Краткое описание</span>
       </div>
       <div class="default-container__content __paddinglr15">
-        <ckeditor [(ngModel)]="editableNewsItem.shortDescription"
+        <ckeditor [(ngModel)]="shortDescription"
                   [config]="{ autoParagraph: false, entities: false }"
+                  (change)="onValidate()"
                   debounce="500">
         </ckeditor>
         <div class="default-container __preview">
@@ -38,7 +39,7 @@
           </div>
           <div class="default-container__content">
             <div class="text-window">
-              {{editableNewsItem.shortDescription}}
+              {{shortDescription}}
             </div>
           </div>
         </div>
@@ -50,8 +51,9 @@
         <span class="default-container__label __font24">Подробное описание</span>
       </div>
       <div class="default-container__content __paddinglr15">
-        <ckeditor [(ngModel)]="editableNewsItem.fullDescription"
+        <ckeditor [(ngModel)]="fullDescription"
                   [config]="{ autoParagraph: false, entities: false }"
+                  (change)="onValidate()"
                   debounce="500">
         </ckeditor>
         <div class="default-container __preview">
@@ -60,7 +62,7 @@
           </div>
           <div class="default-container__content">
             <div class="text-window">
-              <app-text-window  [text]="editableNewsItem.fullDescription"></app-text-window>
+              <app-text-window  [text]="fullDescription"></app-text-window>
             </div>
           </div>
         </div>
@@ -68,6 +70,7 @@
     </div>
 
     <div class="save-container">
+      <span class="error" *ngIf="showError">Заполните все поля!</span>
       <mat-icon svgIcon="save" class="save" (click)="save()"></mat-icon>
     </div>
 
