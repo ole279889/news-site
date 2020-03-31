@@ -1,1 +1,6 @@
-<div class="app-footer"></div>
+<div class="app-footer">
+  <mat-checkbox
+    [checked]="true"
+    (change)="toggleSubscription($event)"
+  >Получать уведомления о новых статьях</mat-checkbox>
+</div>

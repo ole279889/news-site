@@ -10,10 +10,11 @@ import { NewsItem } from '../shared/models/news';
 export class MainPageComponent implements OnInit {
 
   constructor(private mainPageService: MainPageService) {
-    this.mainPageService.loadNews();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.mainPageService.loadNews();
+  }
 
   get newsItems(): NewsItem[] {
     return this.mainPageService.newsItems;

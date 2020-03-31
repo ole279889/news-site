@@ -1,0 +1,19 @@
+@import '~src/assets/scss/global/text-mixins';
+@import '~src/assets/scss/global/variables';
+
+.mat-checkbox {
+  margin: 10px;
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: $grey;
+}
+
+.mat-checkbox-frame {
+  border-color: $lightgrey;
+}
+
+.mat-ripple-element {
+  background-color: $white !important;
+}

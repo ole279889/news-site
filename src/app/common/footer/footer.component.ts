@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private notificationService: NotificationService) { }
 
   ngOnInit(): void {
+  }
+
+  public toggleSubscription(event: MatCheckboxChange): void {
+    event.checked
+      ? this.notificationService.subscribeToNotifications()
+      : this.notificationService.unsubscribe();
   }
 
 }

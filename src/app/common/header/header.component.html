@@ -1,5 +1,6 @@
 <div class="app-header">
-  <div class="search">
+  <div *ngIf="!isMainPage()"></div>
+  <div class="search" *ngIf="isMainPage()">
     <mat-form-field appearance="standard" class="search__field">
       <mat-icon svgIcon="search" class="search__field-icon"></mat-icon>
       <input class="search__field-input"
@@ -17,14 +18,18 @@
   </div>
 
   <div class="app-header__login-container" *ngIf="!isAuthorized">
-    Войти
     <mat-icon svgIcon="account_box" class="app-header__login" (click)="openLoginDialog()"></mat-icon>
   </div>
   <div class="app-header__login-container" *ngIf="isAuthorized" >
     <div>
       <span class="app-header__login">{{currentUserLogin}}</span>
-      <div class="app-header__add-btn" (click)="addNewsItem()">
-        <mat-icon svgIcon="add" class="app-header__add-icon" (click)="logout()"></mat-icon> Предложить новость
+      <div class="app-header__btn" (click)="addNewsItem()">
+        <mat-icon svgIcon="add" class="app-header__icon"></mat-icon>
+        Предложить новость
+      </div>
+      <div class="app-header__btn" (click)="toMainPage()" *ngIf="!isMainPage()">
+        <mat-icon svgIcon="backspace" class="app-header__icon"></mat-icon>
+        На главную
       </div>
     </div>
     <mat-icon svgIcon="exit_to_app" class="app-header__login" (click)="logout()"></mat-icon>

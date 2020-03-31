@@ -6,5 +6,6 @@ export const icons = [
   'search',
   'edit',
   'save',
-  'add'
+  'add',
+  'backspace'
 ];

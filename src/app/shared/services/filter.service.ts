@@ -15,7 +15,7 @@ export class FilterService {
     keyword.length < 2 ? this.clearSearch() : this.applySearch(keyword);
   }
 
-  private clearSearch(): void {
+  public clearSearch(): void {
     this.filteredNewsItems = [];
   }
 

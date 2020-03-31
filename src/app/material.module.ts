@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ScrollingModule} from '@angular/cdk/scrolling';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -17,6 +18,7 @@ import { ScrollingModule} from '@angular/cdk/scrolling';
     MatDialogModule,
     MatFormFieldModule,
     ScrollingModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatIconModule,
@@ -25,6 +27,7 @@ import { ScrollingModule} from '@angular/cdk/scrolling';
     MatDialogModule,
     MatFormFieldModule,
     ScrollingModule,
+    MatCheckboxModule,
   ]
 })
 export class MaterialModule { }

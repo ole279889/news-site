@@ -9,6 +9,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class MainPageService {
 
+  public isMainPage: boolean;
   public newsItems: NewsItem[] = [];
   public selectedNewsItem: NewsItem;
   public onNewsItemModifiedSubject: Subject<boolean> = new Subject<boolean>();
@@ -48,6 +49,7 @@ export class MainPageService {
       fullDescription: item.fullDescription,
     }
     this.http.patch(`http://localhost:5000/news/${item.id}`, itemPatchParams).subscribe(() => {
+      this.editableNewsItem = null;
       this.onNewsItemModifiedSubject.next(true);
     }, (error) => {
       console.log(error);
@@ -62,6 +64,7 @@ export class MainPageService {
       fullDescription: item.fullDescription,
     }
     this.http.post(`http://localhost:5000/news`, itemAddParams).subscribe(() => {
+      this.editableNewsItem = null;
       this.onNewsItemModifiedSubject.next(true);
     }, (error) => {
       console.log(error);
@@ -82,10 +85,19 @@ export class MainPageService {
   }
 
   private isEditableItemModified(): boolean {
-    return (this.selectedNewsItem && this.editableNewsItem)
-      && !(this.selectedNewsItem.preview === this.editableNewsItem.preview
-        && this.selectedNewsItem.shortDescription === this.editableNewsItem.shortDescription
-        && this.selectedNewsItem.fullDescription === this.editableNewsItem.fullDescription);
+    const hasSelected = Boolean(this.selectedNewsItem);
+    const hasEditable = Boolean(this.editableNewsItem)
+      && Boolean(this.editableNewsItem.preview)
+      && Boolean(this.editableNewsItem.shortDescription)
+      && Boolean(this.editableNewsItem.fullDescription);
+    return !hasSelected && hasEditable
+      || (hasSelected && hasEditable && !this.isItemsEqual(this.selectedNewsItem, this.editableNewsItem));
+  }
+
+  private isItemsEqual(item1: NewsItem, item2: NewsItem): boolean {
+    return item1.preview === item2.preview
+      && item1.shortDescription === item2.shortDescription
+      && item1.fullDescription === item2.fullDescription;
   }
 
 }

@@ -30,6 +30,10 @@ export class NotificationService {
       .catch(err => console.error('Could not subscribe to notifications', err));
   }
 
+  public unsubscribe(): void {
+    this.swPush.unsubscribe();
+  }
+
   private sendToServer(params: PushSubscription): void {
     this.http.post('http://localhost:5000/notifications', { notification : params }).subscribe();
   }

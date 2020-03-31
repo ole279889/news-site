@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import { AuthorizationService } from '../../auth/shared/authorization.service';
 import { DialogService } from '../../shared/services/dialog.service';
 import { FilterService } from '../../shared/services/filter.service';
@@ -15,12 +15,19 @@ export class HeaderComponent implements OnInit {
 
   public filter = '';
 
+  @HostListener('document:click', ['$event']) clickout(event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.clearSearch();
+    }
+  }
+
   constructor(
     private authorizationService: AuthorizationService,
     private dialogService: DialogService,
     private filterService: FilterService,
     private router: Router,
     private mainPageService: MainPageService,
+    private eRef: ElementRef,
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +60,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public getDetails(id: number): void {
+    this.clearSearch();
     this.router.navigate(['news-detail', id]);
   }
 
@@ -66,4 +74,18 @@ export class HeaderComponent implements OnInit {
     this.mainPageService.editableNewsItem = new NewsItem(item);
     this.router.navigate(['news-add']);
   }
+
+  public isMainPage(): boolean {
+    return this.mainPageService.isMainPage;
+  }
+
+  public toMainPage(): void {
+    this.router.navigate(['']);
+  }
+
+  clearSearch(): void {
+    this.filter = '';
+    this.filterService.clearSearch();
+  }
+
 }

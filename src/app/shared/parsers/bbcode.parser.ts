@@ -16,19 +16,19 @@ export class BBCodeParser implements Parser {
   private static defaults(): BBCode[] {
     return [
       new BBCode(
-        '\\[spoiler\\](.+?)\\[\\/spoiler\\]',
+        '\\[spoiler\\]([^[\\]]+?)\\[\\/spoiler\\]',
         `<app-content-hide [contentToHide]="'${'$1'}'"></app-content-hide>`
       ),
       new BBCode(
-        '\\[hide\\](.+?)\\[\\/hide\\]',
+        '\\[hide\\]([^[\\]]+?)\\[\\/hide\\]',
         `<app-accordeon [text]="'${'$1'}'"></app-accordeon>`
       ),
       new BBCode(
-        '\\[tooltip text="(.+?)"\\](.+?)\\[\\/tooltip\\]',
+        '\\[tooltip text="(.+?)"\\]([^[\\]]+?)\\[\\/tooltip\\]',
         `<app-tooltip [text]="'${'$1'}'" [targetText]="'${'$2'}'"></app-tooltip>`
       ),
       new BBCode(
-        '\\[map point=(.+?)\\](.+?)\\[\\/map\\]',
+        '\\[map point=(.+?)\\]([^[\\]]+?)\\[\\/map\\]',
         `<app-text-map [coords]="'${'$1'}'" [baloonText]="'${'$2'}'"></app-text-map>`
       ),
     ];

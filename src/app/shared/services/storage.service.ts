@@ -5,18 +5,20 @@ import { Injectable } from '@angular/core';
 })
 export class StorageService {
 
+  private STORAGE_PREFIX = 'news-pwa-';
+
   constructor() { }
 
   public get(key: string): any {
-    return JSON.parse(localStorage.getItem(key));
+    return JSON.parse(localStorage.getItem(this.STORAGE_PREFIX + key));
   }
 
   public set(key: string, value: any): void {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(this.STORAGE_PREFIX + key, JSON.stringify(value));
   }
 
   public remove(key: string) {
-    localStorage.removeItem(key);
+    localStorage.removeItem(this.STORAGE_PREFIX + key);
   }
 
   public clearAll() {
