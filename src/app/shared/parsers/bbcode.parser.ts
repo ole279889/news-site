@@ -44,7 +44,7 @@ export class BBCodeParser implements Parser {
       .reduce((acc, code) => acc.replace(code.regexp, code.replacement), _text);
   }
 
-  private replaceQuotes(text: string): string {// замена кавычек только для содержимого bbcode
+  public replaceQuotes(text: string): string {// замена кавычек только для содержимого bbcode
     const expr = /\]([^[\]]+?)\[\//g;
     const found = text.match(expr);
     if (!found) {

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { INewsItem, NewsItem } from '../../shared/models/news';
 import { StorageService } from '../../shared/services/storage.service';
 import { Observable, Subject } from 'rxjs';
+import { BBCodeParser } from '../../shared/parsers/bbcode.parser';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,11 @@ export class MainPageService {
   public onNewsItemModifiedSubject: Subject<boolean> = new Subject<boolean>();
   private _editableNewsItem: NewsItem;
 
-  constructor(private http: HttpClient, private storage: StorageService) {
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService,
+    private parser: BBCodeParser,
+  ) {
     this.editableNewsItem = this.storage.get('editableNewsItem');
   }
 
@@ -103,7 +108,7 @@ export class MainPageService {
   private isItemsEqual(item1: NewsItem, item2: NewsItem): boolean {
     return item1.preview === item2.preview
       && item1.shortDescription === item2.shortDescription
-      && item1.fullDescription === item2.fullDescription;
+      && this.parser.replaceQuotes(item1.fullDescription) === this.parser.replaceQuotes(item2.fullDescription);
   }
 
 }
