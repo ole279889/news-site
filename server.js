@@ -27,28 +27,6 @@ function newsIDMax() {
   });
 }
 
-function sendNotifications(header, id) {
-
-  const notificationPayload = {
-    notification: {
-      title: 'News!',
-      body: `New news article added: ${header} - click to show`,
-      icon: 'assets/images/icons/notification.png',
-      vibrate: [100, 50, 100],
-      data: {
-        url: `http://localhost:8080/news-detail/${id}`
-      }
-    }
-  };
-
-  Promise.all(USER_SUBSCRIPTIONS.map(sub => webPush.sendNotification(sub, JSON.stringify(notificationPayload))))
-    .then(() => console.log('Notifications sent successfully.'))
-    .catch(err => {
-      console.error('Error sending notification, reason: ', err);
-      res.sendStatus(500);
-    });
-}
-
 app.post('/notifications', function (req, res) {
   const sub = req.body.notification;
   console.log('Received Subscription on the server: ', sub);
@@ -95,8 +73,23 @@ app.post('/news', function (req, res) {
   };
   news.push(newsItem);
   _news = JSON.stringify(news);
-  sendNotifications(req.body.preview, _id);
-  res.end(JSON.stringify(newsItem));
+  const notificationPayload = {
+    notification: {
+      title: 'News!',
+      body: `New news article added: ${req.body.preview} - click to show`,
+      icon: 'assets/images/icons/notification.png',
+      vibrate: [100, 50, 100],
+      data: {
+        url: `http://localhost:8080/news-detail/${_id}`
+      }
+    }
+  };
+  Promise.all(USER_SUBSCRIPTIONS.map(sub => webPush.sendNotification(sub, JSON.stringify(notificationPayload))))
+    .then(() => console.log('Notifications sent successfully.'))
+    .catch(err => {
+      console.error('Error sending notification, reason: ', err);
+    });
+  res.end();
 });
 
 app.set('port', 5000);

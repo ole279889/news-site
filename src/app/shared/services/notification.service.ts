@@ -31,6 +31,7 @@ export class NotificationService {
   }
 
   public unsubscribe(): void {
+    this.pushSubscription = null;
     this.swPush.unsubscribe();
   }
 
