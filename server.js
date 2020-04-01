@@ -80,7 +80,7 @@ app.post('/news', function (req, res) {
       icon: 'assets/images/icons/notification.png',
       vibrate: [100, 50, 100],
       data: {
-        url: `http://localhost:8080/news-detail/${_id}`
+        url: `http://localhost:8080/#/news-detail/${_id}`
       }
     }
   };
