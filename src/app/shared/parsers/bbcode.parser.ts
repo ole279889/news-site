@@ -39,8 +39,22 @@ export class BBCodeParser implements Parser {
   }
 
   public parse(text: string): string {
+    const _text = this.replaceQuotes(text);
     return this.codes
-      .reduce((acc, code) => acc.replace(code.regexp, code.replacement), text);
+      .reduce((acc, code) => acc.replace(code.regexp, code.replacement), _text);
+  }
+
+  private replaceQuotes(text: string): string {// замена кавычек только для содержимого bbcode
+    const expr = /\]([^[\]]+?)\[\//g;
+    const found = text.match(expr);
+    if (!found) {
+      return text;
+    }
+    found.forEach((match: string) => {
+      const _match = match.replace(/["']/g, '');
+      text = text.replace(match, _match);
+    })
+    return text;
   }
 
 }

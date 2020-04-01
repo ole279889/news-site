@@ -10,7 +10,6 @@ export class DecodePipe implements PipeTransform {
   }
 
   public transform(value: string): string {
-    //console.log(this.parser.parse(value));
     return this.parser.parse(value);
   }
 }
